@@ -4,9 +4,9 @@ date: 2016-08-13 18:53:08
 tags: Git
 ---
 
-Git is a well-known version control system used for software development. Learning Git to control one's own project maybe one easy thing for a single software developer. He/She only has to download Git, install it, init a repo, and perhaps register an account on GitHub for personal use, and push his/her code to the remote on the registered GitHub account. These are the first steps to learn the basics of Git, such as how to jump the old version of a project, how to checkout new branches, how to merge different branches, etc. However, when it comes to collaboration, Git workflows step in here. It is very inconvenient to call up several of your friends to collaborate with you to help you learn Git workflow. First thing, you have to ensure that they are interested in learning or helping you learning Git. But this is rarely the case. Or an idea perhaps comes to you that you pretend to be two contributors to a single GitHub repository. Well, this is a reasonable solution, but it feels a little bit awkward for me. So I turned to another one.
+Git is a well-known version control system used for software development. Learning Git to control one's own project maybe one easy thing for a single software developer. He/She only has to download Git, install it, init a repo, and perhaps register an account on GitHub for personal use, and push his/her code to the remote on the registered GitHub account. These are the first steps to learn the basics of Git, such as how to checkout the old version of a project or new branches, how to carry out merge and rebase operations, etc. However, when it comes to collaboration, the basic knowledge of Git workflows becomes essential. Workflow basically means a way of collaborating in Git among several developers. To test out a workflow in order to get familiar with it, it is quite trivial to do all the commits by your own. And it is somewhat inconvenient to call up several of your friends to collaborate with you to help you learn Git workflow. I once came up with the idea that I register two GitHub account and contribute to the same repository. Well, admittedly, it feels a little bit awkward. So I turned to another solution.
 
-The solution I'm using to play with and test out Git is to set up my own Git remote repo on a server. Then I can init different Git repos on my local machine that mirror the remote repo. Thus I have full control over the configurations of all my local repos, my remote repo and all the ways I want each "contributor" to behave in the collaboration workflow. So, in this way, it is extraordinarily convenient to experiment with Git whatever the way you want. This solution I'm going to show here is simple and have zero cost, both socially and financially (Yes! I assume you already have a computer.) The steps are introduced in the following content of this post.
+The solution I'm using to play with and test out Git is to set up my own Git remote repo on a server. Then I can initialize different Git repos on my local machine that are linked to the same remote repo. Thus I have full control over the configurations of all my local repos, my remote repo and all the ways I want each "contributor" to behave in the collaboration workflow. So, in this way, it is exceedingly convenient to experiment with Git whatever the way you want. This solution I'm going to share here is simple and have little cost. The steps are introduced in the following content of this post.
 
 ### Run your Git server on a virtual machine
 
@@ -76,7 +76,7 @@ public class FileModifier {
             fileWriter.close();
         }
     }
-    
+
     public static void modifyRandomFile(String path) throws IOException {
         File[] files = new File(path).listFiles();
         if (files.length == 0) {
@@ -91,7 +91,7 @@ public class FileModifier {
             }
         }
     }
-    
+
     private static String getRandomString() {
         return UUID.randomUUID().toString();
     }
@@ -112,7 +112,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ModifyRepo {
-    
+
     private static final String REPO_PATH_FIRST = "C:/Users/sun/Desktop/git/repo1"; // Change this to your own local repo
     private static final String REPO_PATH_SECOND = "C:/Users/sun/Desktop/git/repo2"; // Change this to your own local repo
     private static final int NUMBER_OF_FILES_INFLUENCED_PER_CHANGE = 1; // If you want to influence more files per click, increase this value.
@@ -148,17 +148,17 @@ public class ModifyRepo {
 
                 JPanel panel = new JPanel();
                 panel.setLayout(new GridLayout(1, 2));
-                
+
                 JButton button1 = new JButton("Modify Repo 1");
                 JButton button2 = new JButton("Modify Repo 2");
-                
+
                 button1.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         createOrModifyFiles(repoPath1, count);
                     }
                 });
-                
+
                 button2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
