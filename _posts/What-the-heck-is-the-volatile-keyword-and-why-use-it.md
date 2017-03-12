@@ -12,7 +12,7 @@ tags:
 The result of some operation on shared resources by multiple threads can cause trouble as well as confusion sometimes. The following code is one of the examples:
 
 ```java
-// the static variale `stop` is shared by the threads started below
+// the static variable `stop` is shared by the threads started below
 static boolean stop = false;
 
 public static void main(String[] args) {
@@ -36,9 +36,9 @@ public static void main(String[] args) {
 }
 ```
 
-If one compiles and then runs this piece of code, most likely that it will terminated successfully. The READ-THREAD keeps executing the while loop if the `stop` is `false`. When the WRITE-THREAD sets the `stop` to `true`, the READ-THREAD should terminates immediately. Another possible executing process is that the `stop` is set to `true` even before the execution of READ-THREAD. It seems that this piece of code will never cause any trouble the programmer. However, in some rare cases, the program never terminates. So what causes this unexpected result?
+If one compiles and then runs this piece of code, most likely that it will terminated successfully. The READ-THREAD keeps executing the while loop if the `stop` is `false`. When the WRITE-THREAD sets the `stop` to `true`, the READ-THREAD should terminate immediately. Another possible executing process is that the `stop` is set to `true` even before the execution of READ-THREAD. It seems that this piece of code will never cause any trouble the programmer. However, in some rare cases, the program never terminates. What causes this unexpected result?
 
-To make the problem more prominent, one can make the WRITE-THREAD sleep for a while before execute the `stop = true;` statement. So the code of WRITE-THREAD becomes:
+To make the problem more prominent, one can make the WRITE-THREAD sleep for a while before execute the `stop = true;` statement. Then the code of WRITE-THREAD becomes:
 
 ```java
 new Thread(new Runnable() {
@@ -71,17 +71,17 @@ In order to uncover the cause of this problem, we have to have a bit knowledge o
 
 When a thread takes a read/write operation on a value, the operation may happen either from main memory or the CPU cache used by the thread. The CPU cache used by the thread is local to the thread itself. The cache is used for performance considerations, so that a read/write operation can just occur in the cache rather than in the main memory which is more expensive for threads to perform such operations.
 
-For a typical write operation, the thread writes to the CPU cache that is local to the thread first. And then the writen value is flushed to the main memory. However, one cannot decide for sure that the flush occurs. Likewise, in some scenarios, the read operation may just occur in the cache for the read thread.
+For a typical write operation, the thread writes to the CPU cache that is local to the thread first. And then the written value is flushed to the main memory. However, one cannot decide for sure that the flush occurs. Likewise, in some scenarios, the read operation may just occur in the cache for the read thread.
 
-Think of this: the execution flow of a read thread is determined by a shared variable. Another thread changed to value of the shared variable but the change was't flushed to the memory in time. Or the change had been flushed to the memory, but for some reasons, the read operation reads the value of the shared variable from its CPU cache instead of the main memory. Unexpected results can surely arise from such a situation.
+Think of this: the execution flow of a read thread is determined by a shared variable. Another thread changed to value of the shared variable but the change hasn't been flushed to the memory in time. Or the change had been flushed to the memory, but for some reasons, the read operation reads the value of the shared variable from its CPU cache instead of the main memory. Unexpected results can surely arise from such a situation.
 
 Back to our previous code. When the WRITE-THREAD starts, it goes immediately into blocked state due to the invocation of `Thread.sleep(100)`. Now, the READ-THREAD goes into the `while` loop and stays in the loop. After 100 milliseconds, the WRITE-THREAD wakes up and updated the value of `stop`. Chances are the updated value, which is `true` now, is flushed to the main memory. But the while loop is so optimized that it just busy reading from its local cache and hasn't had a chance to look into the main memory. So the loop never breaks.
 
 ### Using the `volatile` keyword
 
-So the question is how can we guarantee that read/write of a variable is read from or written to the main memory instead of the CPU cache local to the thread that is operating on the value.
+The question is how can we guarantee that read/write of a variable is read from or written to the main memory instead of the CPU cache local to the thread that is operating on the value.
 
-The answer is the `volatile` keyword. By declaring a variable as `volatile`, we tells the program any write operation to the variable should be immediately flushed to the main memory, and any read operation of the variable should read from the main memory instead of local cache.
+The answer is the `volatile` keyword. By declaring a variable as `volatile`, we tell the program any write operation to the variable should be immediately flushed to the main memory, and any read operation of the variable should read from the main memory instead of local cache.
 
 The fixed code should like this:
 
@@ -100,12 +100,12 @@ Another way of describing the function of `volatile` is that `volatile` guarante
 
 In fact, the `volatile` keyword has two effect.
 
-1. Guarantees the visiblity of variable among threads.
+1. Guarantees the visibility of variable among threads.
 2. Prevent JVM from reordering instructions that involves volatile variables.
 
 The first one is what we've seen above. Let's talk about the second one.
 
-In the above case, we mentioned that the visiblity of volatile variable is guaranteed. However, this is part of the truth. In fact, all the write operations of non-volatile variables before a volatile write and all the read operations after a volatile read are guaranteed to be performed in the main memory.
+In the above case, we mentioned that the visibility of volatile variable is guaranteed. However, this is part of the truth. In fact, all the write operations of non-volatile variables before a volatile write and all the read operations after a volatile read are guaranteed to be performed in the main memory.
 
 Let's see another example:
 
@@ -134,7 +134,7 @@ volatileBoolean = true; // a volatile write (suppose the old value is false)
 nonVolatileStr = "world"; // suppose the old value is "hello"
 ```
 
-In the above code section, the visibility of `nonVolatileStr` is NOT guaranteed. Nevertheless, reorderings before or after a volatile instruction are fine.
+In the above code section, the visibility of `nonVolatileStr` is NOT guaranteed. Nevertheless, reordering before or after a volatile instruction are fine.
 
 ```java
 // though nonVolatileInt and nonVolatileStr are reordered, their visibility is also guaranteed after the volatile write of volatileBoolean
@@ -192,4 +192,4 @@ public static void main(String[] args) {
 
 A misconception exists that `volatile` is used to deal the safety issues of multithreading. Well, in a sense, yes it is. Because multiple threads that are involved in the operations on a volatile read/write can be considered as directly happening in the main memory, since flushes between CPU cache and main memory occur immediately after any read/write operation on a volatile variable. The process of read/write and flush is indivisible. The visibility of the value of the variable is guaranteed among all threads. But it is important to notice that visibility is not the same issue as atomicity.
 
-Application of `volatile` is useful when one deals with a single write thread and no less than one read threads. When more than one write threads are required, race condition can happen among differenct concurrently running write threads that writes to the same shared resource. Explicit synchronization using `synchronzed` keyword or `Lock` from `java.util.concurrent` package to synchronize different write threads are necessary.
+Application of `volatile` is useful when one deals with a single write thread and no less than one read threads. When more than one write threads are required, race condition can happen among different concurrently running write threads that writes to the same shared resource. Explicit synchronization using `synchronized` keyword or `Lock` from `java.util.concurrent` package to synchronize different write threads are necessary.
