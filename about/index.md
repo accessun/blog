@@ -16,17 +16,20 @@ Beijing, China
 
 ## Description
 
-I'm a backend web developer. I fell in love with programming several years ago. My favorite language is Java. My work mainly involves developing web applications using Java web tool stack. I love getting myself exposed to new technology and steadily learn to grasp new knowledge relevant to web development.
+I'm a backend web developer. I fell in love with programming a few years ago. I wrote in Java, Python and JavaScript. My work mainly involves developing web applications using Java web tool stack. I love getting myself exposed to new technology and steadily learn to grasp new knowledge relevant to web development. Currently, I'm also insterested in blockchain related technology.
 
-
-## Favorites
+## Skill Set
 
 * [Java](https://en.wikipedia.org/wiki/Java_%28programming_language%29)
+* [Python](https://www.python.org/)
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 * [Git](https://git-scm.com/)
 * [Spring](https://projects.spring.io/spring-framework/)
-* [Bootstrap](https://getbootstrap.com/)
+* [Oracle](https://en.wikipedia.org/wiki/Oracle_Database)
+* [PL/SQL](https://en.wikipedia.org/wiki/PL/SQL)
 * [MySQL](https://www.mysql.com/)
-* [MyBatis](http://www.mybatis.org/mybatis-3/)
+* [Redis](https://redis.io/)
+* [Linux](https://en.wikipedia.org/wiki/Linux)
 
 
 ## Contact
