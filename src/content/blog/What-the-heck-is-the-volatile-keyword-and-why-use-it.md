@@ -1,10 +1,11 @@
 ---
 title: What the heck is the volatile keyword and why use it
-date: 2017-03-05 14:37:45
-tags:
-- Java
-- Concurrency
-- Multithreading
+metaDescription: What the heck is the volatile keyword and why use it
+pubDate: 2017-03-05
+featured: false
+categories: ['Technical']
+tags: ['java', 'concurrency', 'multithreading']
+readingTime: 18 min
 ---
 
 ### Problem

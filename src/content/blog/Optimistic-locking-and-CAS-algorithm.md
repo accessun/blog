@@ -1,10 +1,11 @@
 ---
 title: Optimistic locking and CAS algorithm
-date: 2017-03-12 19:56:33
-tags:
-- Java
-- Concurrency
-- Multithreading
+metaDescription: Optimistic locking and CAS algorithm
+pubDate: 2017-03-12
+featured: false
+categories: ['Technical']
+tags: ['java', 'concurrency', 'multithreading']
+readingTime: 15 min
 ---
 
 When dealing with problems that required more than one threads of execution running concurrently, if there are multiple threads trying to write to the shared resource, the [critical section](http://tutorials.jenkov.com/java-concurrency/race-conditions-and-critical-sections.html) that contains set operations to the shared resource should be locked up when one thread enters this section. This way of dealing thread safety issue is called pessimistic locking. Why pessimistic? Because the program assumes that any set operations by a thread to the shared resource may cause a collision with other threads, which is a bad thing. Since the possibility of this bad thing happening always exists, we should lock them up when a single thread enters the critical section. This way, the possibility of collision is reduced to zero. The pessimistic "guy" expects bad things and take precautions accordingly to try to reduce risks to a maximum extent. Though the safety issue can be completely solved, the performance is also negatively impacted since all threads have to queue up waiting for its access.

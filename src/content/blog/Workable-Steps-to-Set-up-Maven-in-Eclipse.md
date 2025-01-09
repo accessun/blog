@@ -1,8 +1,11 @@
 ---
 title: Workable Steps to Set up Maven in Eclipse
-date: 2016-12-17 17:24:57
-tags:
-- Maven
+metaDescription: Workable Steps to Set up Maven in Eclipse
+pubDate: 2016-12-17
+featured: false
+categories: ['Technical']
+tags: ['maven']
+readingTime: 10 min
 ---
 
 Tested on Windows 10, in Eclipse Neon/Eclipse Neon.1 (the version for Java EE developers), using Maven 3.3.9 (externally installed, not the embedded one in Eclipse)

@@ -1,9 +1,11 @@
 ---
 title: Make a Tape Photo by CSS
-date: 2016-10-16 08:21:20
-tags: 
-- Front-end
-- CSS
+metaDescription: Make a Tape Photo by CSS
+pubDate: 2016-10-16
+featured: false
+categories: ['Technical']
+tags: ['css']
+readingTime: 15 min
 ---
 
 In this blog, we'll imitate a taped photo on web browser with HTML and CSS. The following image demonstrates the intended result.

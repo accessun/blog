@@ -1,9 +1,14 @@
 ---
 title: Java Initialization Blocks
-date: 2016-09-18 22:10:32
-tags: Java
+metaDescription: Java Initialization Blocks
+pubDate: 2016-09-18
+featured: false
+categories: ['Technical']
+tags: ['java']
+readingTime: 15 min
 ---
 
+Initialization blocks in Java are used for initializing when a class is loaded or an instance is instantiated. Java has two kinds of initialization block, namely, static initialization block and instance initialization block (or non-static initializer block). These two kinds of block may seem a little bit odd when one first comes across them.
 
 Initialization blocks in Java are used for initializing when a class is loaded or an instance is instantiated. Java has two kinds of initialization block, namely, static initialization block and instance initialization block (or non-static initializer block). These two kinds of block may seem a little bit odd when one first comes across them.
 

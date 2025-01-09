@@ -1,0 +1,58 @@
+---
+const startYear = 2016;
+const currentYear = new Date().getFullYear();
+import XLogo from "../assets/icons/x-logo.svg?raw";
+import GitHubLogo from "../assets/icons/github-mark.svg?raw";
+import { Mail } from "lucide-astro";
+---
+
+<footer class="bg-gray-800 text-gray-300">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div>
+        <h4 class="text-xl font-bold mb-4 text-white">About</h4>
+        <p class="text-gray-300 leading-relaxed">
+          A personal blog sharing experiences in tech, life, and everything in between.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-xl font-bold mb-4 text-white">Connect</h4>
+        <div class="flex flex-wrap gap-6">
+          <a
+            href="mailto:accessun@hotmail.com"
+            class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
+            title="Send me an email"
+          >
+            <Mail class="size-6 group-hover:scale-110 transition-transform" />
+            <span class="sr-only">Send me an email</span>
+          </a>
+          <a
+            href="https://x.com/gaccessun"
+            target="_blank"
+            class="flex items-center text-gray-300 hover:text-white transition-colors group"
+            title="Follow me on X"
+          >
+            <div class="size-5 group-hover:scale-110 transition-transform">
+              <Fragment set:html={XLogo} />
+            </div>
+            <span class="sr-only">Follow me on X</span>
+          </a>
+          <a
+            href="https://github.com/accessun"
+            target="_blank"
+            class="flex items-center text-gray-300 hover:text-white transition-colors group"
+            title="Visit my GitHub profile"
+          >
+            <div class="size-5 group-hover:scale-110 transition-transform">
+              <Fragment set:html={GitHubLogo} />
+            </div>
+            <span class="sr-only">Visit my GitHub profile</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-8 text-center text-sm">
+      <p class="text-gray-400">&copy; {startYear}-{currentYear} Xin SUN. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

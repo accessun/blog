@@ -1,8 +1,11 @@
 ---
 title: Quick summary on nested class
-date: 2017-03-29 22:08:47
-tags:
-- Java
+metaDescription: Quick summary on nested class
+pubDate: 2017-03-29
+featured: false
+categories: ['Technical']
+tags: ['java']
+readingTime: 10 min
 ---
 
 Nested classes are divided into two categories:

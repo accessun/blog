@@ -1,10 +1,11 @@
 ---
-title: >-
-  A simple trick to synchronize multiple ajax callbacks with a subsequent
-  procedure in JavaScript
-date: 2017-04-15 21:44:25
-tags:
-- JavaScript
+title: A simple trick to synchronize multiple ajax callbacks with a subsequent procedure in JavaScript
+metaDescription: A simple trick to synchronize multiple ajax callbacks with a subsequent procedure in JavaScript
+pubDate: 2017-04-15
+featured: false
+categories: ['Technical']
+tags: ['javascript']
+readingTime: 10 min
 ---
 
 A simple trick to synchronize multiple ajax callbacks with a subsequent procedure in JavaScript

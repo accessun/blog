@@ -1,13 +1,11 @@
 ---
-title: >-
-  A simple demonstration of data relation design using Entity-Attribute-Value
-  model
-date: 2016-08-31 23:01:35
-tags: 
-- Database
-- SQL
-- MySQL
-- MongoDB
+title: A simple demonstration of data relation design using Entity-Attribute-Value model
+metaDescription: A simple demonstration of data relation design using Entity-Attribute-Value model
+pubDate: 2016-08-31
+featured: false
+categories: ['Technical']
+tags: ['database']
+readingTime: 10 min
 ---
 
 Traditional relational database schema is often the most appropriate choice for most cases. At the beginning stage of development, designing a proper data relation often requires extensive thinking and planning before diving into the real development stage. This is because the entity relations on which business logic is based upon is dependent on the relation of data in the database. Improper design of data relation may lead to difficulties and bad design patterns on the upper levels. Also, data relations serve real world demands. However, sometimes, demands are not quit fit into our well established and readily accepted relational schema. For example, say, we have a set of clinical experimental data. Suppose we have one sample which is represented by `sampleId` for each patient. And every patient has a `patientId` to be uniquely identified. So every record has three common columns: `id`, `sampleId`, `patientId`. Although each patient has one sample, different experiments that generate various kinds of data are carried out based on the samples the patients provided. Thus, every record for the patients may have different fields besides the three common fields. The block below is one possible example of three records. As we know, traditional relational database requires a fixed number of columns. If our preference is not to squeeze all the different fields into one column of string for all the patients, it is unrealistic to fit all the data into one table due to the varying number of fields for each record. Apparently, a new kind of design pattern is required.

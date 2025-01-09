@@ -1,7 +1,11 @@
 ---
 title: Learning Plan for a Java Backend Developer
-date: 2016-07-31 22:05:46
-tags:
+metaDescription: Learning Plan for a Java Backend Developer
+pubDate: 2016-07-31
+featured: false
+categories: ['Technical']
+tags: ['java']
+readingTime: 3 min
 ---
 
 Here is a list of points of knowledge I prepared for myself to learn or to review in order to be an advanced Java backend developer.

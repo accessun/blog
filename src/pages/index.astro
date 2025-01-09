@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import BlogPostEntry from "../components/BlogPostEntry.astro";
+import { truncateText, plainify } from "../utils";
+import { type Category } from "../types";
+
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPosts = sortedPosts.filter(post => post.data.featured);
+const latestPosts = sortedPosts.filter(post => !post.data.featured);
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-b from-white to-gray-200 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 py-16">
+      <div class="flex flex-col md:flex-row items-center md:space-x-8">
+        <img
+          src="/author.jpg"
+          alt="Profile Picture"
+          class="rounded-full w-24 h-24 md:w-32 md:h-32 object-cover mb-6 md:mb-0"
+        />
+        <div class="text-center md:text-left">
+          <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to My Blog</h1>
+          <p class="text-gray-600 text-lg">
+            Exploring technology, sharing experiences, and documenting my journey through software development and beyond.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {featuredPosts.length > 0 && (
+    <!-- Featured Posts -->
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-8">Featured Posts</h2>
+      <div class="space-y-4">
+        {featuredPosts.map((post) => (
+          <BlogPostEntry
+            id={post.id}
+            title={post.data.title}
+            contentIntro={truncateText(plainify(post.body!), 150)}
+            pubDate={post.data.pubDate}
+            categories={post.data.categories as Category[]}
+            readingTime={post.data.readingTime || "5 min"}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Latest Posts -->
+  <div class="max-w-4xl mx-auto px-4 py-12 pb-24">
+    <h2 class="text-2xl font-semibold text-gray-900 mb-8">Latest Posts</h2>
+    <div class="space-y-4">
+      {latestPosts.map((post) => (
+        <BlogPostEntry
+          id={post.id}
+          title={post.data.title}
+          contentIntro={truncateText(plainify(post.body!), 150)}
+          pubDate={post.data.pubDate}
+          categories={post.data.categories as Category[]}
+          readingTime={post.data.readingTime || "5 min"}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

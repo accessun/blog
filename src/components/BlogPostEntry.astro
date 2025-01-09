@@ -1,0 +1,53 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+import CategoryLabel from "./CategoryLabel.astro";
+import { type Category } from "../types";
+
+interface Props {
+  id: string;
+  title: string;
+  contentIntro: string;
+  pubDate: Date;
+  categories: Category[];
+  readingTime: string;
+  tags: string[];
+}
+
+const { id, title, contentIntro, pubDate, categories, readingTime, tags } =
+  Astro.props;
+---
+
+<article
+  class="bg-gradient-to-br from-gray-100 to-slate-200/80 p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+>
+  <a href={`/blog/${id}`} class="block">
+    <div class="flex flex-wrap items-center justify-between mb-2">
+      <div class="flex flex-wrap gap-2">
+        {categories.slice(0, 3).map((category) => (
+          <CategoryLabel category={category} />
+        ))}
+      </div>
+      <span class="text-sm text-gray-500">
+        <FormattedDate date={pubDate} />
+      </span>
+    </div>
+    <h3 class="text-xl font-semibold mb-3 text-gray-900 hover:text-indigo-600">
+      {title}
+    </h3>
+    <p class="text-gray-600 mb-4 line-clamp-3">{contentIntro}</p>
+    <div class="flex flex-wrap items-center gap-4">
+      <span class="text-sm text-gray-500">{readingTime} read</span>
+      {
+        tags && tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="whitespace-nowrap rounded-full bg-slate-400 px-2.5 py-0.5 text-sm text-white">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </a>
+</article>

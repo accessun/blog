@@ -1,7 +1,11 @@
 ---
 title: Set Up Git Environment To Test Out Collaboration Workflow
-date: 2016-08-13 18:53:08
-tags: Git
+metaDescription: Set Up Git Environment To Test Out Collaboration Workflow
+pubDate: 2016-08-13
+featured: false
+categories: ['Technical']
+tags: ['git']
+readingTime: 10 min
 ---
 
 Git is a well-known version control system used for software development. Learning Git to control one's own project maybe one easy thing for a single software developer. He/She only has to download Git, install it, init a repo, and perhaps register an account on GitHub for personal use, and push his/her code to the remote on the registered GitHub account. These are the first steps to learn the basics of Git, such as how to checkout the old version of a project or new branches, how to carry out merge and rebase operations, etc. However, when it comes to collaboration, the basic knowledge of Git workflows becomes essential. Workflow basically means a way of collaborating in Git among several developers. To test out a workflow in order to get familiar with it, it is quite trivial to do all the commits by your own. And it is somewhat inconvenient to call up several of your friends to collaborate with you to help you learn Git workflow. I once came up with the idea that I register two GitHub account and contribute to the same repository. Well, admittedly, it feels a little bit awkward. So I turned to another solution.

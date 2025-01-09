@@ -1,0 +1,71 @@
+---
+import { SITE_TITLE } from "../consts";
+import XLogo from "../assets/icons/x-logo.svg?raw";
+import GitHubLogo from "../assets/icons/github-mark.svg?raw";
+---
+
+<header class="m-0 px-4 py-0 bg-gray-800 shadow-sm" role="banner">
+  <nav 
+    class="flex items-center justify-between"
+    role="navigation"
+    aria-label="Main navigation"
+  >
+    <h2 class="m-0 text-base">
+      <a
+        href="/"
+        class="text-gray-300 hover:text-white transition-colors no-underline font-bold p-4 inline-block"
+        aria-label="Go to homepage"
+      >
+        {SITE_TITLE}
+      </a>
+    </h2>
+
+    <div 
+      class="flex items-center gap-2"
+      role="menubar"
+      aria-label="Primary navigation"
+    >
+      <a
+        href="/"
+        class="px-3 py-4 text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-white focus:outline-none focus:border-white focus:text-white"
+        role="menuitem"
+        aria-current={Astro.url.pathname === "/" ? "page" : undefined}
+      >
+        Home
+      </a>
+      <a
+        href="/about"
+        class="px-3 py-4 text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-white focus:outline-none focus:border-white focus:text-white"
+        role="menuitem"
+        aria-current={Astro.url.pathname === "/about" ? "page" : undefined}
+      >
+        About
+      </a>
+    </div>
+
+    <div 
+      class="social-links hidden md:flex gap-2"
+      role="navigation"
+      aria-label="Social links"
+    >
+      <a
+        href="https://x.com/gaccessun"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex px-2 py-4 text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 rounded"
+        aria-label="Follow me on X (formerly Twitter)"
+      >
+        <Fragment set:html={XLogo} />
+      </a>
+      <a
+        href="https://github.com/accessun"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex px-2 py-4 text-gray-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 rounded"
+        aria-label="Visit my GitHub profile"
+      >
+        <Fragment set:html={GitHubLogo} />
+      </a>
+    </div>
+  </nav>
+</header>

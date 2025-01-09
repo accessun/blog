@@ -1,0 +1,94 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import { Calendar, Clock, Tag, FolderOpen } from "lucide-astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const {
+  title,
+  metaTitle,
+  metaDescription,
+  pubDate,
+  updatedDate,
+  categories = [],
+  tags = [],
+} = Astro.props;
+---
+
+<BaseLayout title={metaTitle || title} description={metaDescription}>
+  <article class="max-w-3xl mx-auto px-4 py-10">
+    <!-- Title Section -->
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
+
+      <!-- Metadata Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+        <!-- Publication Date -->
+        <div class="flex items-center gap-2">
+          <Calendar class="size-4" />
+          <span>Published: <FormattedDate date={pubDate} /></span>
+        </div>
+
+        <!-- Last Updated Date -->
+        {
+          updatedDate && (
+            <div class="flex items-center gap-2">
+              <Clock class="size-4" />
+              <span>
+                Updated: <FormattedDate date={updatedDate} />
+              </span>
+            </div>
+          )
+        }
+
+        <!-- Categories -->
+        {
+          categories.length > 0 && (
+            <div class="flex items-center gap-2">
+              <FolderOpen class="size-4" />
+              <div class="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <a
+                    href={`/category/${category}`}
+                    class="hover:text-blue-600 transition-colors"
+                  >
+                    {category}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        <!-- Tags -->
+        {
+          tags.length > 0 && (
+            <div class="flex items-center gap-2">
+              <Tag class="size-4" />
+              <div class="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <a
+                    href={`#`}
+                    class="bg-gray-100 px-2 py-1 rounded-full hover:bg-gray-200 transition-colors"
+                  >
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </header>
+
+    <!-- Divider -->
+    <hr class="border-gray-200 mb-8" />
+
+    <!-- Content -->
+    <div class="prose prose-lg max-w-none">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,9 +1,11 @@
 ---
 title: Setting up a Simple Automated Front-end Dev Workflow
-date: 2016-11-18 21:47:20
-tags:
-- Front-end
-- Gulp
+metaDescription: Setting up a Simple Automated Front-end Dev Workflow
+pubDate: 2016-11-18
+featured: false
+categories: ['Technical']
+tags: ['front-end', 'gulp']
+readingTime: 10 min
 ---
 
 Front-end development is very interesting. You can really see what's happening when you type in your code. And dealing with HTML, CSS, and JS to build a good-looking user interface is much easier and more rewarding than a very platform-targeted UI building process.

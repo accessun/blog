@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pubDate = new Date("August 04 2016");
+const updatedDate = new Date("January 07 2025");
+
+// Format dates
+const formattedPubDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+const formattedUpdateDate = updatedDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout>
+  <article class="max-w-3xl mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-6" title="About the author of this blog">About Me</h1>
+    
+    <div class="text-sm text-gray-600 mb-8">
+      <time>Published: {formattedPubDate}</time>
+      <span class="mx-2">•</span>
+      <time>Last updated: {formattedUpdateDate}</time>
+    </div>
+
+    <section class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">Name</h2>
+        <p class="text-gray-700">Xin SUN (孙鑫).</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">Location</h2>
+        <p class="text-gray-700">Beijing, China.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">Description of me</h2>
+        <p class="text-gray-700 leading-relaxed">
+          I'm a backend web developer. I fell in love with programming a few years
+          ago. I wrote in Java, Python and JavaScript. My work mainly involves
+          developing web applications using Java web tool stack. I love getting myself
+          exposed to new technology and steadily learn to grasp new knowledge relevant
+          to web development. Currently, I'm also insterested in blockchain related
+          technology.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">Skill Set</h2>
+        <ul class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {["Java", "Python", "JavaScript", "Git", "Spring", "Oracle", "MySQL", "Redis", "Linux"].map((skill) => (
+            <li class="bg-gray-100 px-4 py-2 rounded-lg text-gray-700">{skill}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">Contact</h2>
+        <p class="text-gray-700">
+          You can contact me via email: <a href="mailto:accessun@gmail.com" class="text-blue-600 hover:text-blue-800 underline">
+            accessun@hotmail.com
+          </a>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">Projects</h2>
+        <p class="text-gray-700 leading-relaxed">
+          I've also built some projects in my free time. One of the recent projects
+          I've been working on is a website dedicated for <a
+            href="https://log-keisan.com"
+            class="text-blue-600 hover:text-blue-800 underline">logarithm calculation and visualization</a
+          >. This website is called log-keisan (log計算), as it is a website for
+          Japanese users. I started this project at the end of 2024 and hope it would
+          be a gift of real value for both my target users and myself.
+        </p>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
